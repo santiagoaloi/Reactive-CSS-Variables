@@ -5,7 +5,7 @@
       @click="drawer = !drawer"
     />
 
-    <v-toolbar-title>Application</v-toolbar-title>
+    <v-toolbar-title>Use CSS variables in Vue2</v-toolbar-title>
   </v-app-bar>
 </template>
 

@@ -1,111 +1,34 @@
 <template>
-  <v-container
-    id="home"
-    class="fill-height text-center"
-    tag="section"
-  >
-    <v-row justify="center">
-      <v-col
-        class="mb-4"
-        cols="auto"
-      >
-        <span class="headline font-weight-light">Vuetify</span>
-
-        <h1 class="display-4 font-weight-black mb-6">
-          Vuetify Preset
-        </h1>
-
-        <v-img
-          class="mx-auto mb-10"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-light.png"
-          width="196"
-        />
-
-        <h2 class="body-2 font-weight-black">
-          Important Links
-        </h2>
-
-        <v-responsive
-          class="mx-auto my-4"
-          max-width="60"
+  <v-container class="d-flex justify-center fill-height">
+    <v-row>
+      <v-col>
+        <v-card
+          class="card-1 mx-auto white--text"
+          :style="style1"
         >
-          <v-divider />
-        </v-responsive>
-
-        <v-responsive
-          class="mx-auto"
-          max-width="400"
-        >
-          <v-row
-            class="mx-auto"
-            dense
-          >
-            <v-col
-              v-for="[link, text, icon] in links"
-              :key="link"
-              cols="12"
-              sm="6"
-            >
-              <v-btn
-                :href="link"
-                block
-                depressed
-                target="_blank"
-              >
-                <v-icon
-                  left
-                  v-text="icon"
-                />
-
-                {{ text }}
-              </v-btn>
-            </v-col>
-          </v-row>
-        </v-responsive>
+          <v-card-title>
+            Vuetfiy's light  theme primary color  
+          </v-card-title>
+          <code class="ml-3"> $vuetify.theme.themes.light.primary</code>
+        </v-card> 
       </v-col>
-
-      <v-col cols="12">
-        <h2 class="body-2 font-weight-black">
-          Preset Features
-        </h2>
-
-        <v-responsive
-          class="mx-auto my-4"
-          max-width="60"
+      <v-col>
+        <v-card
+          class="card-2 mx-auto white--text"
+          :style="style2"
         >
-          <v-divider />
-        </v-responsive>
+          <v-card-title>
+            Custom reactive css color
+          </v-card-title>
+          <code class="ml-3"> Use either HEX, RGB, name colors</code>
 
-        <v-responsive
-          class="mx-auto"
-          max-width="600"
-        >
-          <v-row
-            class="mx-auto my-4"
-            justify="center"
-          >
-            <v-col
-              v-for="[text, icon, color] in features"
-              :key="text"
-              class="text-center d-inline-flex justify-center flex-wrap"
-              cols="6"
-              sm="4"
-              md="3"
-            >
-              <v-icon
-                :color="color"
-                class="mb-1"
-                size="56"
-                v-text="icon"
-              />
-
-              <div
-                class="col col-12 overline grey--text text--darken-4"
-                v-text="text"
-              />
-            </v-col>
-          </v-row>
-        </v-responsive>
+          <v-container>
+            <v-text-field
+              v-model="customColor"
+              solo
+            />
+          </v-container>
+        </v-card> 
       </v-col>
     </v-row>
   </v-container>
@@ -115,21 +38,36 @@
   export default {
     name: 'HomeView',
 
-    data: () => ({
-      features: [
-        ['Routing', 'mdi-road-variant', 'blue-grey'],
-        ['Vuetify ESLint', 'mdi-auto-fix', 'deep-purple accent-4'],
-        ['SASS', 'mdi-sass', 'pink'],
-        ['Base Components', 'mdi-cube-scan', 'indigo'],
-        ['View Layouts', 'mdi-view-grid-outline', 'orange'],
-        ['Webfont Loader', 'mdi-format-size', 'green accent-4'],
-      ],
-      links: [
-        ['//github.com/vuetifyjs/vuetify', 'Github', 'mdi-github'],
-        ['//vuetifyjs.com', 'Documentation', 'mdi-file-document'],
-        ['//community.vuetifyjs.com', 'Community', 'mdi-account-multiple'],
-        ['//github.com/users/johnleider/sponsors', 'Support Vuetify', 'mdi-vuetify'],
-      ],
-    }),
+    data() {
+      return {
+        customColor: 'teal',
+      }
+    },
+  
+    computed: {
+      style1() {
+        return {
+          'height' : '400px',
+          'width' : '400px',
+          '--primary-color': this.$vuetify.theme.themes.light.primary,
+        }
+      },
+      style2() {
+        return {
+          'height' : '400px',
+          'width' : '400px',
+          '--custom-color': this.customColor || 'grey',
+        }
+      },
+   
+    },
   }
 </script>
+<style scoped>
+  .card-1 {
+  	background:  var(--primary-color);
+  }
+    .card-2 {
+  	background:  var(--custom-color);
+  }
+  </style>
