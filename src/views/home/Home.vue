@@ -65,9 +65,9 @@
 </script>
 <style scoped>
   .card-1 {
-  	background:  var(--primary-color);
+  	background:  var(--primary-color)!important;
   }
     .card-2 {
-  	background:  var(--custom-color);
+  	background:  var(--custom-color)!important;
   }
   </style>
